@@ -15,7 +15,7 @@ type=$(lscpu | grep -m 1 "Architecture:" | sed 's/[^=:]*[=:] //' | sed 's|[/ ]||
 
 benchmark () { 
 
-	if [ -d "/dev/mem" ]; then
+	if [ $(ls /dev/mem | grep -c /) -gt 0 ]; then 
 		ram_type=$(dmidecode -t 17 | grep -m 1 "Type:" | sed 's/[^=:]*[=:] //')
 		ram_speed=$(dmidecode -t 17 | grep -m 1 "Speed:" | sed 's/[^=:]*[=:] //' | tr -d '[:alpha:]' | sed 's|[/, ]||g')
 	else
