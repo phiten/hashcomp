@@ -10,7 +10,7 @@ dependencies: sudo apt-get install git wget
 
 4. sudo ./startBenchmark
 
-Your benchmark will be submitted automatically. You can have a look at it at hashcomp.n3rd3d.com
+Your benchmark will be submitted automatically. You can have a look at it at http://hashcomp.n3rd3d.com
 
 Donation:
 
