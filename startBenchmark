@@ -25,6 +25,10 @@ benchmark () {
 	kernel=$(uname -r)
 	proc_type=$(lscpu | grep -m 1 "Architecture:" | sed 's/[^=:]*[=:] //' | sed 's|[/ ]||g')
 
+	if [[ -z "$ram_type" ]]; then
+		$ram_type="VM"
+	fi
+	
 	timeout 300 ./$1 --benchmark > out.txt
 	sed -i -e '1,7d' out.txt
 

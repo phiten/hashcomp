@@ -1,6 +1,6 @@
 # hashcomp
 
-dependencies: sudo apt-get install git wget
+dependencies: sudo apt-get install git wget dmidecode 
 
 1. git clone https://github.com/phiten/hashcomp
 
