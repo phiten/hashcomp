@@ -29,12 +29,20 @@ benchmark () {
 	os=$(lsb_release -d -s)
 	kernel=$(uname -r)
 	proc_type=$(lscpu | grep -m 1 "Architecture:" | sed 's/[^=:]*[=:] //' | sed 's|[/ ]||g')
-
+	proc_amount=$(nproc)	
+	
 	if [[ -z "$ram_type" ]]; then
 		ram_type="VM or no dmidecode"
 	fi
 	
-	timeout 300 ./$1 --benchmark > out.txt
+
+	if [ $(( ram_amount_mb / 500 )) -le $proc_amount ]; then
+		(( threeways = ($ram_amount_mb - 1000) / 384 ))
+		(( oneways =  $proc_amount - $threeways  ))
+		options="-t $threeways -1 $oneways"
+    fi
+	
+	timeout 300 ./$1 --benchmark $options > out.txt
 	sed -i -e '1,7d' out.txt
 
 	hashrate=$(cat out.txt | awk '{ sum += $4 } END { if (NR > 0) print sum / NR }')
