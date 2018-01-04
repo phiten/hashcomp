@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 #Philipp "3D" ten Brink
 #2018-01-04
@@ -14,8 +14,6 @@ fi
 type=$(lscpu | grep -m 1 "Architecture:" | sed 's/[^=:]*[=:] //' | sed 's|[/ ]||g')
 
 benchmark () { 
-	
-	echo "The Benchmark will take about 6 minutes."
 
 	proc=$(cat /proc/cpuinfo | grep -m 1 "model name" | sed 's/[^=:]*[=:] //' | sed 's/[@].*$//')
 	proc_frq=$(cat /proc/cpuinfo | grep -m 1 "model name" | sed 's/[^=:]*[=:] //' | sed 's/[^@]*@ //' | tr -d '[:alpha:]')
@@ -41,6 +39,7 @@ benchmark () {
 case $type in 
    [x86_64]* ) 
 		echo "The Benchmark will take about 6 minutes."
+		chmod +x cpuminer_x64
 		benchmark cpuminer_x64
 		echo "Benchmark submitted."
 		echo "If you like what I'm doing please donate :) VRM/VRC VJniF5bP9Acy7ce33yR4jRYSQ66Z4vGH8s"
@@ -48,6 +47,7 @@ case $type in
        
    [armv71]* )
 		echo "The Benchmark will take about 6 minutes."
+		chmod +x cpuminer_armv7
 		benchmark cpuminer_armv7
 		echo "Benchmark submitted."
 		echo "If you like what I'm doing please donate :) VRM/VRC VJniF5bP9Acy7ce33yR4jRYSQ66Z4vGH8s"
@@ -55,6 +55,7 @@ case $type in
 	  
    [aarch64]* )
 		echo "The Benchmark will take about 6 minutes."
+		chmod +x cpuminer_armv8
 		benchmark cpuminer_armv8
 		echo "Benchmark submitted."
 		echo "If you like what I'm doing please donate :) VRM/VRC VJniF5bP9Acy7ce33yR4jRYSQ66Z4vGH8s"
