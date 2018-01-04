@@ -15,3 +15,6 @@ Your benchmark will be submitted automatically. You can have a look at it at has
 Donation:
 
 VRM/VRC VJniF5bP9Acy7ce33yR4jRYSQ66Z4vGH8s
+
+
+The Benchmark uses fireworm71's veriumMiner v1.4 https://github.com/fireworm71/veriumMiner
