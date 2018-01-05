@@ -15,11 +15,12 @@ type=$(lscpu | grep -m 1 "Architecture:" | sed 's/[^=:]*[=:] //' | sed 's|[/ ]||
 
 benchmark () { 
 
-	if [ -d "/dev/mem" ]; then
+	if [ $(ls /dev/mem | grep -c /) -gt 0 ]; then 
 		ram_type=$(dmidecode -t 17 | grep -m 1 "Type:" | sed 's/[^=:]*[=:] //')
 		ram_speed=$(dmidecode -t 17 | grep -m 1 "Speed:" | sed 's/[^=:]*[=:] //' | tr -d '[:alpha:]' | sed 's|[/, ]||g')
 	else
 		ram_type="no /dev/mem folder - sbc or docker"
+		ram_speed=0
 	fi
 	
 	proc=$(cat /proc/cpuinfo | grep -m 1 "model name" | sed 's/[^=:]*[=:] //' | sed 's/[@].*$//')
@@ -29,13 +30,13 @@ benchmark () {
 	os=$(lsb_release -d -s)
 	kernel=$(uname -r)
 	proc_type=$(lscpu | grep -m 1 "Architecture:" | sed 's/[^=:]*[=:] //' | sed 's|[/ ]||g')
-	proc_amount=$(nproc)	
+	proc_amount=$(nproc)
+	
 	
 	if [[ -z "$ram_type" ]]; then
 		ram_type="VM or no dmidecode"
 	fi
 	
-
 	if [ $(( ram_amount_mb / 500 )) -le $proc_amount ]; then
 		(( threeways = ($ram_amount_mb - 1000) / 384 ))
 		(( oneways =  $proc_amount - $threeways  ))
