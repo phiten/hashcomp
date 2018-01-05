@@ -1,6 +1,6 @@
 # hashcomp
 
-dependencies: sudo apt-get install git wget dmidecode libcurl4-openssl-dev libjansson-dev unzip
+dependencies: sudo apt-get install git wget dmidecode libcurl4-openssl-dev libjansson-dev
 
 1. git clone https://github.com/phiten/hashcomp
 
