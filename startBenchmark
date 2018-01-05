@@ -49,7 +49,9 @@ benchmark () {
 	
 	echo "Your calculated hashrate is $hashrate"
 	
-	read -n 140 -p "Would you like to add a comment? If not press Enter otherwise type in your comment and press Enter. (max. 140 chars) " comment
+	read -n 100 -p "Would you like to add a comment? If not press Enter otherwise type in your comment and press Enter. (max. 100 chars) " com
+	
+	comment="Options: $options / Comment: $com"
 
 	rm -rf out.txt strp.txt
 
