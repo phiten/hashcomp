@@ -38,6 +38,8 @@ benchmark () {
 		options="-t $threeways -1 $oneways"
     fi
 	
+	echo "$options"
+	
 	timeout 300 ./$1 --benchmark $options > out.txt
 	sed -i -e '1,7d' out.txt
 
