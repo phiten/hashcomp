@@ -45,6 +45,11 @@ benchmark () {
 
 	hashrate=$(cat out.txt | awk '{ sum += $4 } END { if (NR > 0) print sum / NR }')
 	
+	if [[ -z "$hashrate" ]]; then 
+		echo "Something went wrong. Please check your setup."
+		exit 1
+	fi 
+	
 	echo "Your calculated hashrate is $hashrate"
 	
 	read -n 100 -p "Would you like to add a comment? If not press Enter otherwise type in your comment and press Enter. (max. 100 chars) " com
