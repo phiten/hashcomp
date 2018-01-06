@@ -49,10 +49,6 @@ benchmark () {
 	fi 
 	
 	echo "Your calculated hashrate is $hashrate"
-	
-	read -n 100 -p "Would you like to add a comment? If not press Enter otherwise type in your comment and press Enter. (max. 100 chars) " com
-	
-	comment="Threats: $proc_amount / Options: $options / Comment: $com"
 
 	rm -rf out.txt strp.txt
 
@@ -63,7 +59,10 @@ benchmark () {
 	 
 	  # (2) handle the input we were given 
 	  case $answer in 
-	   [yY]* )  wget -O /dev/null -o /dev/null "http://hashcomp.lls-technik.com/submit?p1=\"$proc\"&p2=$proc_frq&p3=\"$ram_type\"&p4=$ram_amount_mb&p5=$ram_speed&p6=\"$os\"&p7=\"$kernel\"&p8=\"$proc_type\"&p9=$hashrate&p10=\"$comment\""
+	   [yY]* )  read -n 100 -p "Would you like to add a comment? If not press Enter otherwise type in your comment and press Enter. (max. 100 chars) " com
+				comment="Threats: $proc_amount / Options: $options / Comment: $com"
+				wget -O /dev/null -o /dev/null "http://hashcomp.lls-technik.com/submit?p1=\"$proc\"&p2=$proc_frq&p3=\"$ram_type\"&p4=$ram_amount_mb&p5=$ram_speed&p6=\"$os\"&p7=\"$kernel\"&p8=\"$proc_type\"&p9=$hashrate&p10=\"$comment\""
+				echo "Benchmark submitted."
 		  break;;
 		   
 	   [nN]* )
@@ -74,36 +73,10 @@ benchmark () {
 	  esac 
 	done 
 	
-	
 }
-
-case $type in 
-   x86_64) 
-		echo "The Benchmark will take about 6 minutes."
-		chmod +x cpuminer_x64
-		benchmark cpuminer_x64
-		echo "Benchmark submitted."
-		echo "If you like what I'm doing please donate :) VRM/VRC VJniF5bP9Acy7ce33yR4jRYSQ66Z4vGH8s"
-		exit 0;;
-       
-   armv71)
-		echo "The Benchmark will take about 6 minutes."
-		chmod +x cpuminer_armv7
-		benchmark cpuminer_armv7
-		echo "Benchmark submitted."
-		echo "If you like what I'm doing please donate :) VRM/VRC VJniF5bP9Acy7ce33yR4jRYSQ66Z4vGH8s"
-		exit 0;;
-	  
-   aarch64)
-		echo "The Benchmark will take about 6 minutes."
-		chmod +x cpuminer_armv8
-		benchmark cpuminer_armv8
-		echo "Benchmark submitted."
-		echo "If you like what I'm doing please donate :) VRM/VRC VJniF5bP9Acy7ce33yR4jRYSQ66Z4vGH8s"
-		exit 0;;
-		
-  * )   echo "Your CPU Architecture is not supported. Sorry"
-		exit 1;;
-     
-  esac 
-done 
+ 
+echo "The Benchmark will take about 6 minutes."
+chmod +x cpuminer
+benchmark cpuminer
+echo "If you like what I'm doing please donate :) VRM/VRC VJniF5bP9Acy7ce33yR4jRYSQ66Z4vGH8s"
+exit 0;;

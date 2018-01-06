@@ -8,13 +8,17 @@ dependencies: sudo apt-get install git wget libcurl4-openssl-dev libjansson-dev 
 
 3. sudo chmod +x startBenchmark
 
-4. sudo ./startBenchmark
+4. cp startBenchmark 'veriumMinerLocation'
 
-Your benchmark will be submitted automatically. You can have a look at it at http://hashcomp.n3rd3d.com
+5. go to you veriumMinerLocation
+
+5. sudo ./startBenchmark
+
+Your benchmark will be submitted after request. You can have a look at it at http://hashcomp.n3rd3d.com
 
 Donation:
 
 VRM/VRC VJniF5bP9Acy7ce33yR4jRYSQ66Z4vGH8s
 
 
-The Benchmark uses fireworm71's veriumMiner v1.4 https://github.com/fireworm71/veriumMiner
+## working with https://github.com/effectsToCause/veriumMiner and https://github.com/fireworm71/veriumMiner
